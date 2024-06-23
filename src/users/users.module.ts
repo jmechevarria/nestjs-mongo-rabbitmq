@@ -5,6 +5,8 @@ import { ReqresModule } from '../reqres/reqres.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './entities/user.entity';
 import { UsersRepository } from './UsersRepository';
+import { UserAvatarSchema } from './entities/user-avatar.entity';
+import { AvatarService } from './avatar.service';
 
 @Module({
   controllers: [UsersController],
@@ -13,7 +15,7 @@ import { UsersRepository } from './UsersRepository';
     ReqresModule,
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },
-  providers: [UsersService],
+      { name: 'UserAvatar', schema: UserAvatarSchema },
     ]),
   ],
 })

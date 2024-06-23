@@ -16,4 +16,9 @@ export class ReqresService {
     return response.data;
   }
 
+  async getUserAvatar(id: number): Promise<string> {
+    const user = await this.getUser(id);
+
+    return user.data.avatar;
+  }
 }

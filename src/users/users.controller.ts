@@ -28,13 +28,18 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Get(':id/avatar')
+  findAvatar(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.findAvatar(id);
+  }
+
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.findOne(id);
   }
 
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.remove(id);
+  @Delete(':id/avatar')
+  deleteAvatar(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.deleteAvatar(id);
   }
 }
