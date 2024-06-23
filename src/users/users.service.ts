@@ -1,11 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { ReqresService } from '../reqres/reqres.service';
+import { UsersRepository } from './UsersRepository';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    private readonly reqresService: ReqresService,
+    private readonly repo: UsersRepository,
+  ) {}
+  async create(createUserDto: CreateUserDto) {
+    const created = this.repo.save(createUserDto);
+
+    return created;
   }
 
   findAll() {
@@ -13,7 +20,7 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.reqresService.getUser(id);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
