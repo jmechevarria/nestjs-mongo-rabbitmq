@@ -13,7 +13,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        uri: `mongodb+srv://${configService.get<string>('DB_USER')}:${configService.get<string>('DB_PASSWORD')}@atlascluster.e0ztlcm.mongodb.net/nestjs-mongo-rabbitmq?retryWrites=true&w=majority&appName=AtlasCluster;`,
+        uri: configService.get<string>('MONGO_URI'),
       }),
       inject: [ConfigService],
     }),

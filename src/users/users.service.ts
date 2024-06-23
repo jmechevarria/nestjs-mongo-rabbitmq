@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { ReqresService } from '../reqres/reqres.service';
 import { UsersRepository } from './UsersRepository';
 import { AvatarService } from './avatar.service';
+import { RabbitmqService } from '../rabbitmq/rabbitmq.service';
 
 @Injectable()
 export class UsersService {
@@ -10,11 +11,13 @@ export class UsersService {
     private readonly reqresService: ReqresService,
     private readonly repo: UsersRepository,
     private readonly avatarService: AvatarService,
+    private readonly rabbitmqService: RabbitmqService,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const created = this.repo.save(createUserDto);
+    const created = await this.repo.save(createUserDto);
 
+    await this.rabbitmqService.pushToEmailQueue(JSON.stringify(created));
     return created;
   }
 
