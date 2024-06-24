@@ -30,7 +30,6 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
       response: '',
     };
 
-    console.log(exception.constructor, typeof exception);
     if (exception instanceof HttpException) {
       myResponseObject.statusCode = exception.getStatus();
       myResponseObject.response = exception.getResponse();

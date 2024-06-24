@@ -4,7 +4,7 @@ import { UsersController } from './users.controller';
 import { ReqresModule } from '../reqres/reqres.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './entities/user.entity';
-import { UsersRepository } from './UsersRepository';
+import { UsersRepository } from './user.repository';
 import { UserAvatarSchema } from './entities/user-avatar.entity';
 import { AvatarService } from './avatar.service';
 import { RabbitMQModule } from '../rabbitmq/rabbitmq.module';

@@ -22,7 +22,6 @@ export class RabbitmqService implements OnModuleInit {
   }
 
   onModuleInit() {
-    console.log(1);
     this.connect();
     this.connectConsumer();
   }
@@ -33,7 +32,6 @@ export class RabbitmqService implements OnModuleInit {
 
   private connect() {
     try {
-      console.log(2);
       this.connection = amqp.connect([this.mqServerUrl]);
       this.channel = this.connection.createChannel({
         setup: (channel: ConfirmChannel) => {

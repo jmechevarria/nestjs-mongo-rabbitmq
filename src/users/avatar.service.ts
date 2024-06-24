@@ -6,7 +6,7 @@ import { createHash } from 'crypto';
 
 @Injectable()
 export class AvatarService {
-  async exists(name: string) {
+  async exists(name: string): Promise<boolean> {
     const path = join('avatars', name);
 
     try {

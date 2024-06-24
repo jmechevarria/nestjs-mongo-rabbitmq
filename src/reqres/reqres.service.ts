@@ -10,15 +10,9 @@ export class ReqresService {
 
   async getUser(id: number): Promise<{ data: User }> {
     const response = await firstValueFrom(
-      this.httpService.get(`${this.baseUrl}/users/${id}`),
+      this.httpService.get<{ data: User }>(`${this.baseUrl}/users/${id}`),
     );
 
     return response.data;
-  }
-
-  async getUserAvatar(id: number): Promise<string> {
-    const user = await this.getUser(id);
-
-    return user.data.avatar;
   }
 }
